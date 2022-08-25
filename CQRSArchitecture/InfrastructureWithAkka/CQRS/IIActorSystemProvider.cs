@@ -1,12 +1,12 @@
-﻿namespace InfrastructureWithAkka
-{
-    using Akka.Actor;
+﻿using Akka.Actor;
 
+namespace InfrastructureWithAkka.CQRS
+{
     public interface IActorSystemProvider
     {
         /// <summary>
         /// Get the actor system singleton
         /// </summary>
-        ActorSystem ActorSystem { get; }
+        ActorSystem CqrsActorSystem { get; }
     }
 }

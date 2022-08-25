@@ -1,8 +1,8 @@
-﻿namespace ApplicationWithAkka.Interfaces
-{
-    using System;
+﻿using System;
 
-    public interface ICommand
+namespace ApplicationWithAkka.Interfaces
+{
+    public interface IAkkaCommand
     {
         /// <summary>
         /// Identifier of the command.

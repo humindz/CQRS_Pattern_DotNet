@@ -1,18 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ApplicationWithMediatR.Services.ProductService;
-using ApplicationWithMediatR.ViewModels;
+using ApplicationWithAkka.Services.ProductService;
+using ApplicationWithAkka.ViewModels;
+using System.Threading.Tasks;
 
 namespace CQRSArchitecture.Controllers
 {
-    using System.Threading.Tasks;
-
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductMediatRController : ControllerBase
+    public class ProductAkkaController : ControllerBase
     {
         private readonly IProductService productService;
 
-        public ProductMediatRController(IProductService productService)
+        public ProductAkkaController(IProductService productService)
         {
             this.productService = productService;
         }
@@ -25,10 +24,10 @@ namespace CQRSArchitecture.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddNewProduct(ProductMediatRViewModel product)
+        public Task<NoContentResult> AddNewProduct(ProductAkkaViewModel product)
         {
-            await this.productService.AddNewProduct(product);
-            return NoContent(); ;
+            this.productService.AddNewProduct(product);
+            return Task.FromResult(NoContent()); ;
         }
     }
 }

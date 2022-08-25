@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApplicationWithAkka\ApplicationWithAkka.csproj" />
     <ProjectReference Include="..\ApplicationWithMediatR\ApplicationWithMediatR.csproj" />
     <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>

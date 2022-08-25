@@ -1,8 +1,9 @@
 ﻿namespace ApplicationWithAkka.ViewModels
 {
+    using ApplicationWithAkka.Interfaces;
     using System;
 
-    public class ProductAkkaViewModel
+    public class ProductAkkaViewModel : IResult
     {
         public Guid Id { get; set; }
 

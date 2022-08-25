@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain;
-using ApplicationWithAkka.Interfaces;
+using ApplicationWithMediatR.Interfaces;
 
 namespace Infrastructure.Persistence
 {
-    public class ApplicationWithAkkaContext : IApplicationWithAkkaContext
+    public class ApplicationWithMediatRContext : IApplicationWithMediatRContext
     {
         private List<Product> products;
 
-        public ApplicationWithAkkaContext()
+        public ApplicationWithMediatRContext()
         {
             products = new List<Product>()
             {

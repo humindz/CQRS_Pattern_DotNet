@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace CQRSArchitecture
 {
+    using ApplicationWithAkka;
     using InfrastructureWithAkka;
 
     public class Startup
@@ -28,11 +29,12 @@ namespace CQRSArchitecture
             services.AddControllers();
 
             services.AddHttpContextAccessor();
+            services.AddInfrastructureWithAkkaModule();
 
             services.AddInfrastructureModule();
             services.AddApplicationModule();
             services.AddApplicationWithMediatRModule();
-            services.AddInfrastructureWithAkkaModule();
+            services.AddApplicationWithAkkaModule();
 
             services.AddSwaggerDocument(configure => configure.Title = "CQRS Architecture Demo API");
 

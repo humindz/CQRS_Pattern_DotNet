@@ -1,6 +1,6 @@
 ﻿namespace ApplicationWithAkka.Interfaces
 {
-    public interface IQuery
+    public interface IAkkaQuery
     {
     }
 }
