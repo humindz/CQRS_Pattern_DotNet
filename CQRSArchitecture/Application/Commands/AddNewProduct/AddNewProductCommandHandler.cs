@@ -43,8 +43,6 @@ namespace Application.Commands.AddNewProduct
 
             context.Products.Add(product);
 
-            // Command must be processed asynchronously, so I used an Emty Task.
-            // In the real world, saving data is an asynchronous operation, we use something like context.SaveChangesAsync();
             await Task.Run(() => { });
         }
     }

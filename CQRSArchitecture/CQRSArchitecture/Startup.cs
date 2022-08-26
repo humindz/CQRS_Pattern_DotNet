@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ApplicationWithAkka;
+using InfrastructureWithAkka;
+using InfrastructureWithAkka.SignalR;
 
 namespace CQRSArchitecture
 {
-    using ApplicationWithAkka;
-    using InfrastructureWithAkka;
-
     public class Startup
     {
         private const string PolicyName = "CQRSArchitecture";
@@ -50,6 +50,8 @@ namespace CQRSArchitecture
                     });
             });
             //=========================================================================================
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +71,7 @@ namespace CQRSArchitecture
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ResultHub>("/query-result");
             });
 
             app.UseOpenApi();

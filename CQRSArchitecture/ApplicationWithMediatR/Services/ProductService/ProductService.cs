@@ -1,14 +1,14 @@
-﻿namespace ApplicationWithMediatR.Services.ProductService
-{
-    using ApplicationWithMediatR.Commands.AddNewProduct;
-    using ApplicationWithMediatR.Queries.GetProductsByName;
-    using ApplicationWithMediatR.ViewModels;
-    using MediatR;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
+﻿using ApplicationWithMediatR.Commands.AddNewProduct;
+using ApplicationWithMediatR.Queries.GetProductsByName;
+using ApplicationWithMediatR.ViewModels;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
+namespace ApplicationWithMediatR.Services.ProductService
+{
     public class ProductService : IProductService
     {
         private readonly IMediator mediator;

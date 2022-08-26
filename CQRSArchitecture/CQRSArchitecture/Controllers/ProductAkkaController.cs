@@ -23,11 +23,18 @@ namespace CQRSArchitecture.Controllers
             return result != null ? Ok(result) : (IActionResult)NotFound();
         }
 
+        [HttpGet("price-range")]
+        public async Task<NoContentResult> GetProductsByUnitPriceRange(decimal minPrice, decimal maxPrice)
+        {
+            this.productService.SendGetProductsByPriceRangeQuery(minPrice, maxPrice);
+            return await Task.FromResult(NoContent());
+        }
+
         [HttpPost]
         public Task<NoContentResult> AddNewProduct(ProductAkkaViewModel product)
         {
             this.productService.AddNewProduct(product);
-            return Task.FromResult(NoContent()); ;
+            return Task.FromResult(NoContent());
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿namespace ApplicationWithMediatR.ViewModels
-{
-    using ApplicationWithMediatR.Interfaces;
-    using System;
+﻿using ApplicationWithMediatR.Interfaces;
+using System;
 
+namespace ApplicationWithMediatR.ViewModels
+{
     public class ProductMediatRViewModel : IResult
     {
         public Guid Id { get; set; }

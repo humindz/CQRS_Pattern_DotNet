@@ -29,7 +29,7 @@ namespace InfrastructureWithAkka.CQRS
         private void InitializeReceiverActors()
         {
             processDirectory.TryAdd(typeof(AddNewProductCommand),
-                InitializeActor(() => new AddNewProductCommandHandlerActor(this.context),
+                InitializeActor(() => new AddNewProductCommandHandlerActor(this.context, this.actorSystemProvider),
                     nameof(AddNewProductCommandHandlerActor)));
         }
 

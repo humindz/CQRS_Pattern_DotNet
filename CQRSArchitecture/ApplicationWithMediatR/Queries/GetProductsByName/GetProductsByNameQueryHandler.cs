@@ -1,14 +1,14 @@
-﻿namespace ApplicationWithMediatR.Queries.GetProductsByName
-{
-    using ApplicationWithMediatR.Interfaces;
-    using ApplicationWithMediatR.ViewModels;
-    using MediatR;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
+﻿using ApplicationWithMediatR.Interfaces;
+using ApplicationWithMediatR.ViewModels;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
+namespace ApplicationWithMediatR.Queries.GetProductsByName
+{
     public class GetProductsByNameQueryHandler : IRequestHandler<GetProductsByNameQuery, List<ProductMediatRViewModel>>
     {
         private readonly IApplicationWithMediatRContext context;

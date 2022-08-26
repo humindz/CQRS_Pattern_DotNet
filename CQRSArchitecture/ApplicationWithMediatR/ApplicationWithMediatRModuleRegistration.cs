@@ -2,11 +2,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using CommandsMediatR = ApplicationWithMediatR.Commands;
 using QueriesMediatR = ApplicationWithMediatR.Queries;
+using ApplicationWithMediatR.Services.ProductService;
 
 namespace ApplicationWithMediatR
 {
-    using ApplicationWithMediatR.Services.ProductService;
-
     public static class ApplicationWithMediatRModuleRegistration
     {
         public static void AddApplicationWithMediatRModule(this IServiceCollection services)

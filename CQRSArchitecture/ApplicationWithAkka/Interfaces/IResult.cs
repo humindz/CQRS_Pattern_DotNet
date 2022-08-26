@@ -1,6 +1,7 @@
-﻿namespace ApplicationWithAkka.Interfaces
+﻿using System.Collections.Generic;
+
+namespace ApplicationWithAkka.Interfaces
 {
-    using System.Collections.Generic;
 
     public interface IResult
     {

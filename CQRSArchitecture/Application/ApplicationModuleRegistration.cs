@@ -3,12 +3,11 @@ using Application.Interfaces;
 using Application.Queries;
 using Application.Services.ProductService;
 using Microsoft.Extensions.DependencyInjection;
+using Application.Commands.AddNewProduct;
+using Application.Queries.GetProductByName;
 
 namespace Application
 {
-    using Application.Commands.AddNewProduct;
-    using Application.Queries.GetProductByName;
-
     public static class ApplicationModuleRegistration
     {
         public static void AddApplicationModule(this IServiceCollection services)

@@ -4,7 +4,7 @@ using ApplicationWithAkka.Queries;
 using InfrastructureWithAkka.QueryHandlerActors;
 using System;
 using System.Collections.Concurrent;
-using System.Linq.Expressions;
+using InfrastructureWithAkka.Extensions;
 
 namespace InfrastructureWithAkka.CQRS
 {
@@ -16,29 +16,27 @@ namespace InfrastructureWithAkka.CQRS
         private readonly ConcurrentDictionary<Type, IActorRef> processDirectory =
             new ConcurrentDictionary<Type, IActorRef>();
 
-        public QueryProcessorActor(IActorSystemProvider actorSystemProvider, IApplicationWithAkkaContext context)
+        public QueryProcessorActor(IActorSystemProvider actorSystemProvider, IApplicationWithAkkaContext context, IAkkaQueryProcessor akkaQueryProcessor)
         {
             this.actorSystemProvider = actorSystemProvider;
             this.context = context;
 
-            InitializeReceiverActors();
+            InitializeReceiverActors(akkaQueryProcessor);
 
             Receive<IAkkaQuery>(ForwardCommand);
         }
 
-        private void InitializeReceiverActors()
+        private void InitializeReceiverActors(IAkkaQueryProcessor akkaQueryProcessor)
         {
             processDirectory.TryAdd(typeof(GetProductsByNameQuery),
-                InitializeActor(() => new GetProductsByNameQueryHandlerActor(this.context),
+                this.actorSystemProvider.InitializeActor(
+                    () => new GetProductsByNameQueryHandlerActor(this.context),
                     nameof(GetProductsByNameQueryHandlerActor)));
-        }
 
-        private IActorRef InitializeActor<TActor>(Expression<Func<TActor>> factory, string actorName) where TActor: ActorBase
-        {
-            var queryProcessorActorProps = Props.Create(factory);
-            return actorSystemProvider
-                .CqrsActorSystem
-                .ActorOf(queryProcessorActorProps, actorName);
+            processDirectory.TryAdd(typeof(GetProductByPriceRangeQuery),
+                this.actorSystemProvider.InitializeActor(
+                    () => new GetProductByPriceRangeQueryHandlerActor(this.context, akkaQueryProcessor),
+                    nameof(GetProductByPriceRangeQueryHandlerActor)));
         }
 
         private void ForwardCommand(IAkkaQuery query)
