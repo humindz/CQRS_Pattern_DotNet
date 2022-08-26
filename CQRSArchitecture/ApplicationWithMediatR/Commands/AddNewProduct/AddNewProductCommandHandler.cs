@@ -31,11 +31,8 @@
             };
             context.Products.Add(product);
 
-            //notification
             await mediator.Publish(new ProductCreated(product), cancellationToken);
 
-            // Command must be processed asynchronously, so I used an Emty Task.
-            // In the real world, saving data is an asynchronous operation, we use something like context.SaveChangesAsync();
             await Task.Run(() => { }, cancellationToken);
 
             return 1;
